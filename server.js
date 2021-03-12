@@ -4,8 +4,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
 const clientRoute = express.Router()
-const playlistRoutes = express.Router()
-//require('./database')
+const batchRoutes = express.Router()
+const connection = require('./database').connection
 
 let port = process.env.PORT
 if (port == null || port === '') {
@@ -15,22 +15,22 @@ if (port == null || port === '') {
 app.use(cors())
 app.use(bodyParser.json())
 
-/*playlistRoutes.route('/').get(function (req, res) {
-  Playlist.find(function (err, playlists) {
-    if (err) {
-      console.log(err)
-    } else {
-      res.json(playlists)
+batchRoutes.route('/').get(function (req, res) {
+  let sql = `SELECT * FROM batch`;
+  connection.query(sql, (error, results, fields) => {
+    if (error) {
+      return console.error(error.message);
     }
-  })
-})*/
+    res.json(results);
+  });
+})
 
 clientRoute.use(function(req, res) {
   res.sendFile(path.join(__dirname, '../my-buch/dist/index.html'));
 });
 app.use(express.static('my-buch/dist'))
 
-app.use('/playlists', playlistRoutes)
+app.use('/batches', batchRoutes)
 app.use('/', clientRoute)
 
 app.listen(port, function () {

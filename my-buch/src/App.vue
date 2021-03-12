@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Navbar msg="MyBuch"/>
+    <Navbar title="MyBuch"/>
+    <History />
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
+import History from './components/History.vue'
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    History
   }
 }
 </script>

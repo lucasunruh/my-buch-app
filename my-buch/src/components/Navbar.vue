@@ -1,6 +1,11 @@
 <template>
-  <div class="navbar">
-    <h1>{{ msg }}</h1>
+  <div class="ui menu">
+    <div class="header item">
+      {{ title }}
+    </div>
+    <div class="item">
+      Home
+    </div>
   </div>
 </template>
 
@@ -8,25 +13,25 @@
 export default {
   name: 'Navbar',
   props: {
-    msg: String
+    title: String
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
+xh3 {
   margin: 40px 0 0;
 }
-ul {
+xul {
   list-style-type: none;
   padding: 0;
 }
-li {
+xli {
   display: inline-block;
   margin: 0 10px;
 }
-a {
+xa {
   color: #42b983;
 }
 </style>
